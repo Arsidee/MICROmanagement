@@ -47,19 +47,14 @@ h2 {
 #image-container {
   width: 100%;
   height: 280px;
-  border: 2px solid #999;
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   margin-bottom: 16px;
-  background-color: #f5f5f5;
+  overflow: hidden;
 }
 
 #micro-image {
-  max-width: 100%;
-  max-height: 100%;
-  object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 #image-placeholder {
