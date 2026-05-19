@@ -1,9 +1,9 @@
 var questions = [
-  { image: '', answer: 'E. coli' },
-  { image: '', answer: 'Staphylococcus aureus' },
-  { image: '', answer: 'Streptococcus' },
-  { image: '', answer: 'Bacillus anthracis' },
-  { image: '', answer: 'Mycobacterium tuberculosis' }
+  { image: 'images/ecoli.jpeg',          answer: 'E. coli' },
+  { image: 'images/staphy-aureus.jpeg',  answer: 'Staphylococcus aureus' },
+  { image: 'images/bacillus.jpeg',       answer: 'Bacillus anthracis' },
+  { image: 'images/strep.jpeg',          answer: 'Streptococcus' },
+  { image: 'images/mycobacterium.jpeg',  answer: 'Mycobacterium tuberculosis' }
 ];
 
 function shuffle(arr) {
