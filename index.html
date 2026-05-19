@@ -15,41 +15,61 @@
     <h1>MICROmanagement</h1>
     <p class="subtitle">Can you identify the microorganism?</p>
 
-    <div id="layout">
+    <div id="game-screen">
+      <div id="layout">
 
-      <div id="word-bank">
-        <h2>Word Bank</h2>
-        <ul id="word-list">
-          <li>Bacillus anthracis</li>
-          <li>E. coli</li>
-          <li>Mycobacterium tuberculosis</li>
-          <li>Staphylococcus aureus</li>
-          <li>Streptococcus</li>
-        </ul>
+        <div id="word-bank">
+          <h2>Word Bank</h2>
+          <ul id="word-list">
+            <li>Bacillus anthracis</li>
+            <li>E. coli</li>
+            <li>Mycobacterium tuberculosis</li>
+            <li>Staphylococcus aureus</li>
+            <li>Streptococcus</li>
+          </ul>
+        </div>
+
+        <div id="game-area">
+          <div id="image-container">
+            <img id="micro-image" src="" alt="Microorganism image">
+            <p id="image-placeholder">[ Image will appear here ]</p>
+          </div>
+
+          <div id="guess-area">
+            <label for="guess-input">Your answer:</label>
+            <input id="guess-input" type="text" placeholder="Type the organism name...">
+            <button id="submit-btn">Check</button>
+            <button id="next-btn">Next</button>
+          </div>
+
+          <p id="feedback"></p>
+
+          <div id="score-area">
+            <span>Question: <strong id="question-num">1</strong> / 5</span>
+          </div>
+        </div>
+
       </div>
-
-      <div id="game-area">
-        <div id="image-container">
-          <img id="micro-image" src="" alt="Microorganism image">
-          <p id="image-placeholder">[ Image will appear here ]</p>
-        </div>
-
-        <div id="guess-area">
-          <label for="guess-input">Your answer:</label>
-          <input id="guess-input" type="text" placeholder="Type the organism name...">
-          <button id="submit-btn">Check</button>
-          <button id="next-btn">Next</button>
-        </div>
-
-        <p id="feedback"></p>
-
-        <div id="score-area">
-          <span>Score: <strong id="score">0</strong></span>
-          <span>/ <strong id="total">0</strong></span>
-        </div>
-      </div>
-
     </div>
+
+    <div id="complete-screen" style="display:none;">
+      <h2>Complete!</h2>
+      <p id="final-score"></p>
+
+      <div id="missed-section" style="display:none;">
+        <h3>Missed:</h3>
+        <ul id="missed-list"></ul>
+      </div>
+
+      <div id="correct-section">
+        <h3>Correct:</h3>
+        <ul id="correct-list"></ul>
+      </div>
+
+      <br>
+      <button id="reset-btn">Play Again</button>
+    </div>
+
   </main>
 
   <script src="script.js"></script>

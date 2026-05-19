@@ -99,5 +99,35 @@ h2 {
 
 #score-area {
   font-size: 1em;
-  gap: 4px;
+}
+
+#complete-screen {
+  max-width: 480px;
+  margin-top: 16px;
+}
+
+#complete-screen h2 {
+  font-size: 1.8em;
+  margin-bottom: 8px;
+}
+
+#complete-screen h3 {
+  font-weight: bold;
+  margin-top: 16px;
+  margin-bottom: 6px;
+}
+
+#final-score {
+  font-size: 1.2em;
+  margin-bottom: 8px;
+}
+
+#missed-list li {
+  color: red;
+  margin-bottom: 4px;
+}
+
+#correct-list li {
+  color: green;
+  margin-bottom: 4px;
 }

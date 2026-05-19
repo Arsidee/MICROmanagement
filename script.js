@@ -1,27 +1,37 @@
-var questions = [
+var allQuestions = [
   { image: 'Images/e.coli.jpg',          answer: 'E. coli' },
-  { image: 'Images/staphy-aureus.jpg',  answer: 'Staphylococcus aureus' },
+  { image: 'Images/staphy-aureus.jpg',   answer: 'Staphylococcus aureus' },
   { image: 'Images/bacillus.jpeg',       answer: 'Bacillus anthracis' },
   { image: 'Images/strep.jpeg',          answer: 'Streptococcus' },
   { image: 'Images/mycobacterium.jpeg',  answer: 'Mycobacterium tuberculosis' }
 ];
 
 function shuffle(arr) {
-  for (var i = arr.length - 1; i > 0; i--) {
+  var copy = arr.slice();
+  for (var i = copy.length - 1; i > 0; i--) {
     var j = Math.floor(Math.random() * (i + 1));
-    var temp = arr[i];
-    arr[i] = arr[j];
-    arr[j] = temp;
+    var temp = copy[i];
+    copy[i] = copy[j];
+    copy[j] = temp;
   }
-  return arr;
+  return copy;
 }
 
-shuffle(questions);
+var questions, current, score, answered, results;
 
-var current = 0;
-var score = 0;
-var total = 0;
-var answered = false;
+function startGame() {
+  questions = shuffle(allQuestions);
+  current   = 0;
+  score     = 0;
+  answered  = false;
+  results   = [];
+
+  document.getElementById('game-screen').style.display = 'block';
+  document.getElementById('complete-screen').style.display = 'none';
+  document.getElementById('next-btn').textContent = 'Next';
+
+  loadQuestion();
+}
 
 function loadQuestion() {
   var q = questions[current];
@@ -39,21 +49,26 @@ function loadQuestion() {
 
   document.getElementById('guess-input').value = '';
   document.getElementById('feedback').textContent = '';
+  document.getElementById('feedback').className = '';
+  document.getElementById('question-num').textContent = current + 1;
   document.getElementById('guess-input').focus();
   answered = false;
+
+  var isLast = current === questions.length - 1;
+  document.getElementById('next-btn').textContent = isLast ? 'See Results' : 'Next';
 }
 
 function submitGuess() {
   if (answered) return;
 
-  var guess = document.getElementById('guess-input').value.trim().toLowerCase();
-  var answer = questions[current].answer.toLowerCase();
+  var guess    = document.getElementById('guess-input').value.trim().toLowerCase();
+  var answer   = questions[current].answer.toLowerCase();
   var feedback = document.getElementById('feedback');
 
-  total++;
   answered = true;
 
-  if (guess === answer) {
+  var correct = guess === answer;
+  if (correct) {
     score++;
     feedback.textContent = 'Correct!';
     feedback.className = 'correct';
@@ -62,8 +77,35 @@ function submitGuess() {
     feedback.className = 'incorrect';
   }
 
-  document.getElementById('score').textContent = score;
-  document.getElementById('total').textContent = total;
+  results.push({ answer: questions[current].answer, correct: correct });
+}
+
+function showComplete() {
+  document.getElementById('game-screen').style.display = 'none';
+  document.getElementById('complete-screen').style.display = 'block';
+
+  document.getElementById('final-score').textContent = 'You got ' + score + ' out of ' + questions.length + ' correct!';
+
+  var missedList   = document.getElementById('missed-list');
+  var correctList  = document.getElementById('correct-list');
+  var missedSection = document.getElementById('missed-section');
+
+  missedList.innerHTML  = '';
+  correctList.innerHTML = '';
+
+  var missedCount = 0;
+  for (var i = 0; i < results.length; i++) {
+    var li = document.createElement('li');
+    li.textContent = results[i].answer;
+    if (results[i].correct) {
+      correctList.appendChild(li);
+    } else {
+      missedList.appendChild(li);
+      missedCount++;
+    }
+  }
+
+  missedSection.style.display = missedCount > 0 ? 'block' : 'none';
 }
 
 document.getElementById('submit-btn').addEventListener('click', submitGuess);
@@ -73,8 +115,16 @@ document.getElementById('guess-input').addEventListener('keydown', function(e) {
 });
 
 document.getElementById('next-btn').addEventListener('click', function() {
-  current = (current + 1) % questions.length;
-  loadQuestion();
+  if (!answered) return;
+
+  if (current === questions.length - 1) {
+    showComplete();
+  } else {
+    current++;
+    loadQuestion();
+  }
 });
 
-loadQuestion();
+document.getElementById('reset-btn').addEventListener('click', startGame);
+
+startGame();
