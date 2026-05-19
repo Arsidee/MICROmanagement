@@ -1,6 +1,6 @@
 var questions = [
-  { image: 'images/ecoli.jpeg',          answer: 'E. coli' },
-  { image: 'images/staphy-aureus.jpeg',  answer: 'Staphylococcus aureus' },
+  { image: 'images/e.coli.jpg',          answer: 'E. coli' },
+  { image: 'images/staphy-aureus.jpg',  answer: 'Staphylococcus aureus' },
   { image: 'images/bacillus.jpeg',       answer: 'Bacillus anthracis' },
   { image: 'images/strep.jpeg',          answer: 'Streptococcus' },
   { image: 'images/mycobacterium.jpeg',  answer: 'Mycobacterium tuberculosis' }
