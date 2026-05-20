@@ -35,18 +35,20 @@
             <p id="image-placeholder">[ Image will appear here ]</p>
           </div>
 
-          <div id="guess-area">
-            <label for="guess-input">Your answer:</label>
-            <input id="guess-input" type="text" placeholder="Type the organism name...">
-            <button id="submit-btn">Check</button>
-            <button id="next-btn">Next</button>
+          <div id="timer-area">
+            Time: <strong id="timer-display">15</strong>s
           </div>
+
+          <div id="choices"></div>
 
           <p id="feedback"></p>
 
           <div id="score-area">
             <span>Question: <strong id="question-num">1</strong> / 5</span>
+            <span id="streak-display"></span>
           </div>
+
+          <button id="next-btn" style="display:none;">Next</button>
         </div>
 
       </div>
